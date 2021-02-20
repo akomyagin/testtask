@@ -1,0 +1,33 @@
+{# @var  #}
+{% extends "layout.twig" %}
+{% block content %}
+<div style="width:350px; border: 1px solid #999; border-radius: 3px; padding: 5px; margin: 5px;">
+    {%  if error|length > 0 %}
+        <div class="alert alert-danger" role="alert">
+            {% for er in error %}
+                <p>{{ er }}</p>
+            {% endfor %}
+        </div>
+    {%  endif %}
+    {% if model.getEmail|length > 0 %}
+    <div class="alert alert-success" role="alert">Check your e-mail</div>
+    {% else %}
+    <form action="" method="post">
+        <fieldset>
+            <legend style="color:blue;font-weight:bold;">Retrieve your phone number</legend>
+
+            <div class="form-group">
+                <label for="email">Enter your e-mail:</label>
+                <input type="text" name="email" id="email" class="form-control" value="{{ model.getEmail }}">
+            </div>
+
+            <div class="alert alert-warning" role="alert">
+                The phone number will be e-mailed to you.
+            </div>
+
+            <button class="btn btn-primary">Submit</button>
+        </fieldset>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}
